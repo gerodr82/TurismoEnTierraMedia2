@@ -1,0 +1,6 @@
+Nombre: Eowyn
+PresupuestoInicial: 10.0
+TiempoDisponible: 8.0
+Atracciones adquiridas: 
+Precio total a pagar: 0.0 monedas de oro
+Duraci�n total de las atracciones: 0.0 Horas
