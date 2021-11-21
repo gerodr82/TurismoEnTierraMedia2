@@ -9,7 +9,7 @@ public class Atraccion {
 	
 	
 
-	public Atraccion(int id, String nombre, double costo, double duracion, int cupo) {
+	public Atraccion(int id, String nombre, double costo, double tiempo, int cupo) {
 		
 		this.id=id;
 		this.nombre=nombre;

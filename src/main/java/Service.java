@@ -179,7 +179,7 @@ public class Service {
 	        		//cant es la cantidad de atracciones no gratuitas
 	        		
 	        		for (int i= 1; i<=Integer.valueOf(parts[2]);i++
-	        				/* en el archivo estan las cant de atracciones*/) {
+	        				/* en el archivo estan las cant de atracciones*/
 	        					
 	        					/*
 	        			atr= this.buscarAtraccion(parts[3+i]);
@@ -221,11 +221,11 @@ public class Service {
 	     	    }
 	}*/
 
-	public void cargar() {
+	/*public void cargar() {
 		//this.cargarAtracciones();
 		this.cargarPromociones();
 		//this.cargarUsuarios();
-	}
+	}*/
 	
 	public Atraccion buscarAtraccion(String atraccion ) {
 	for(Atraccion atrac : atracciones) {

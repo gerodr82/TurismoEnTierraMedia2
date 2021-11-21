@@ -18,19 +18,21 @@ public class Turismo {
 	public static void main(String[] args) throws SQLException {
 		
 		UserDAO daoU = new UserDAO(); 
-		atraccionDAO daoA = new atraccionDAO();
 		ArrayList<Usuario> usuarios = daoU.findAll();
+		
+		atraccionDAO daoA = new atraccionDAO();
 		ArrayList<Atraccion>atracciones =daoA.findAll();
 		
 		PromocionDAO daoP = new PromocionDAO();
 		ArrayList<Promocion> promociones = daoP.findAll();
+		
 		System.out.println(usuarios);
 		System.out.println(atracciones);	
 		System.out.println(promociones);
 		//connection.close();
 		
 		Service datos = new Service();
-		datos.cargar();
+		//datos.cargar();
 		ConnectionProvider.close(); //va al final del main
 		
 		System.out.println();
@@ -91,7 +93,10 @@ public class Turismo {
 						int control=0;
 						
 						while (control==0) {
-						System.out.println("Acepta esta promoci�n? ingrese S o N");
+							
+						System.out.println("Acepta esta promocion? ingrese S o N");
+						
+						@SuppressWarnings("resource")
 						Scanner s = new Scanner(System.in);
 						String str = s.nextLine();
 						switch(str) {
@@ -129,7 +134,7 @@ public class Turismo {
 						
 					}
 					else {
-						System.out.println("Atracci�n");
+						System.out.println("Atraccion");
 						System.out.println("[Nombre: "+atr.getNombre()+"]");
 						System.out.println("-Precio: "+atr.getCosto());
 						System.out.println("-Duracion: "+atr.getTiempo()+"horas");

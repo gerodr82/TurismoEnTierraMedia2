@@ -7,7 +7,7 @@ import java.util.ArrayList;
 	private String nombre;
 	private String tipo;
 	private Double descuento;
-	private Double tot; //el precio de la atraccion
+	private Double tot; //el precio de la promocion
 	private ArrayList<Atraccion> atracciones= new ArrayList<Atraccion>(0);
 	private Double tiempoTot;
 	
