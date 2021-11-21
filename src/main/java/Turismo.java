@@ -26,14 +26,17 @@ public class Turismo {
 		PromocionDAO daoP = new PromocionDAO();
 		ArrayList<Promocion> promociones = daoP.findAll();
 		
-		System.out.println(usuarios);
+		/*System.out.println(usuarios);
 		System.out.println(atracciones);	
-		System.out.println(promociones);
+		System.out.println(promociones);*/
 		//connection.close();
 		
 		Service datos = new Service();
-		//datos.cargar();
-		ConnectionProvider.close(); //va al final del main
+		datos.setUsuarios(usuarios);
+		datos.setAtracciones(atracciones);
+		datos.setPromociones(promociones);
+		
+		
 		
 		System.out.println();
 		System.out.println("			Bienvenido a Turismo en la Tierra Media");
@@ -47,6 +50,7 @@ public class Turismo {
 			//ArrayList<Atraccion> atracciones= datos.getAtracciones(); NO VA MAS ESTO
 			
 			ArrayList<Atraccion> atraccionesAdquiridas= new ArrayList<Atraccion>(0); 
+			ArrayList<Promocion> promocionesAdquiridas= new ArrayList<Promocion>(0); //////////
 			//seria las atracciones del itinerario
 			Double totalAPagar= 0.0;
 			Double duracionTotal=0.0;
@@ -77,7 +81,8 @@ public class Turismo {
 							 * y va calculando los costos y mostrando los nombres de las atracciones
 							 * */
 							precioOriginal+=atr.getCosto();
-							if(index==1) {
+							if(index==1)//si la promo tiene una sola atraccion
+								{
 								System.out.println(atr.getNombre()+"]");
 							}
 							else {	
@@ -102,6 +107,7 @@ public class Turismo {
 						switch(str) {
 						case "S":{
 							atraccionesAdquiridas.addAll(prom.getAtracciones());
+							promocionesAdquiridas.add(prom);/////////////////////////
 							totalAPagar+= prom.getTot();
 							duracionTotal+= prom.getTiempoTot();
 							control++;
@@ -180,25 +186,50 @@ public class Turismo {
 		    
 		    
 		    	  try {
-		    		  FileWriter fw = new FileWriter("src/"+usr.getNombre()+".txt");
-					  
-		    			fw.write("Nombre: "+usr.getNombre()+"\n");
-		    			fw.write("PresupuestoInicial: "+usr.getPresupuesto()+"\n");
-		    			fw.write("TiempoDisponible: "+usr.getTiempoDisponible()+"\n");
-		    			fw.write("Atracciones adquiridas: "+"\n");
-		    		  for (Atraccion atr: atraccionesAdquiridas) {
-							fw.write(atr.getNombre()+"\n");
+		    		  
+		    		  ItinerarioDAO daoI = new ItinerarioDAO(); 
+		    		 
+		    		  
+		    		 
+		    			
+		    		
+		    		    FileWriter fw = new FileWriter("src/"+usr.getNombre()+".txt");  					  
+		    			//fw.write("Nombre: "+usr.getNombre()+"\n");
+		    			//fw.write("PresupuestoInicial: "+usr.getPresupuesto()+"\n");
+		    			//fw.write("TiempoDisponible: "+usr.getTiempoDisponible()+"\n");
+		    			//fw.write("Atracciones adquiridas: "+"\n");
+		    			
+		    			  for (Promocion promo: promocionesAdquiridas) {
 							
+								daoI.insertPromocion(usr, promo);
+			    		  }
+			    		  
+		    		  for (Atraccion atr: atraccionesAdquiridas) {
+							
+							daoI.insertAtraccion(usr, atr);
 		    		  }
-		    		  fw.write("Precio total a pagar: "+totalAPagar+" monedas de oro"+"\n");
-		    		  fw.write("Duraci�n total de las atracciones: "+duracionTotal+" Horas"+"\n");
-		    			fw.close();
-		    	    } catch (IOException e) {
+		    		  
+		    		  
+		    		// fw.write("Precio total a pagar: "+totalAPagar+" monedas de oro"+"\n");
+		    		//  fw.write("Duraci�n total de las atracciones: "+duracionTotal+" Horas"+"\n");
+		    		  
+		    			//fw.close();
+		    			
+		    			 
+		    	    } 
+		    	  
+		    	  
+		    	  
+		    	  
+		    	  catch (IOException e) {
 		    	      System.out.println("An error occurred.");
 		    	      e.printStackTrace();
 		    	    }
 		    
 		}
-		
+		ConnectionProvider.close(); //va al final del main
 	}
+
+
+
 }
